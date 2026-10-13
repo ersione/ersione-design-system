@@ -32,3 +32,11 @@ https://www.figma.com/design/TfjaDsg9mQb5CF5SB6hcFL
 ## 변경
 토큰 변경 → `npm run build` → 쇼케이스 네 테마 확인 → Figma 기존 노드 업데이트 → 버전 태그.
 GitHub 저장소는 비공개이며 공개 Sites에는 디자인 검토용 파일만 게시합니다.
+
+## 공유 링크
+- 공개 쇼케이스: https://ersione-design-system.ersione.chatgpt.site
+- 비공개 GitHub: https://github.com/ersione/ersione-design-system
+
+Figma 초기 명세: 80개 테마별 컴포넌트 세트 / 284개 variant 컴포넌트와 8개 지표 패턴 원본.
+모든 family가 완성된 생산용 컴포넌트를 뜻하지 않습니다. Dialog/Table/Tabs 등 일부는 초기 시각 명세이며, 전체 상태·프로토타입 동작·React API는 후속 구현 대상입니다.
+Figma 생성 스크립트는 초기 생성용이며 반복 실행으로 기존 작업을 덮어쓰지 않습니다. 수정 시 state.json의 ID를 기준으로 대상만 업데이트합니다.
