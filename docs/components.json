@@ -1,0 +1,154 @@
+{
+  "version": "0.1.0",
+  "components": [
+    {
+      "name": "Button",
+      "coverage": "S/M/L; primary, secondary, ghost, danger; default, hover, focus, disabled, loading",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Input",
+      "coverage": "M; default, focus, required, invalid, disabled",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Textarea",
+      "coverage": "M; resize vertically",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Checkbox",
+      "coverage": "20px; checked, unchecked, disabled, focus",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Radio",
+      "coverage": "20px; selected, unselected, disabled, focus",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Switch",
+      "coverage": "44x26; on, off, disabled, focus",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Select",
+      "coverage": "M; closed, open, selected, disabled option, invalid, keyboard",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Badge",
+      "coverage": "status or information, 12px label",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Alert",
+      "coverage": "success, warning, error, information",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Tabs",
+      "coverage": "selected, unselected, keyboard",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Dialog",
+      "coverage": "open, closed, dismiss, focus return",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Toast",
+      "coverage": "non-blocking message",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Progress",
+      "coverage": "determinate, textual value",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Skeleton",
+      "coverage": "static loading placeholder",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Accordion",
+      "coverage": "expanded, collapsed",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Pagination",
+      "coverage": "previous/next, boundaries",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Card",
+      "coverage": "content surface; optional elevation",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Table",
+      "coverage": "numeric alignment, headers, empty result",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "Metric",
+      "coverage": "salary, people, flow highlights",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    },
+    {
+      "name": "MetricPanel",
+      "coverage": "cards or unified; S/M/L is not required",
+      "html": "prototype",
+      "react": "planned",
+      "figma": "initial-spec"
+    }
+  ],
+  "patterns": [
+    "SearchFilters",
+    "CardList",
+    "UnifiedMetricPanel",
+    "ReadingSection",
+    "SettingsForm",
+    "EmptyState"
+  ],
+  "note": "v0.1 is a token/specification release. React library is not implemented or published."
+}
