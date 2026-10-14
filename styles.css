@@ -1,0 +1,55 @@
+@import "./tokens/tokens.css";
+
+/* Framework-independent classes. Import once in the application entry point.
+   Apply eds-theme + data-brand="blue|orange" + data-dark="true|false" to a root. */
+.eds-theme { color-scheme: light; }
+.eds-theme[data-dark="true"] { color-scheme: dark; }
+:where(.eds-button, .eds-input, .eds-select, .eds-badge, .eds-metric, .eds-metric-panel, .eds-table, .eds-table-container) { box-sizing: border-box; }
+.eds-button, .eds-input, .eds-select { font: inherit; font-size: 14px; border: 1px solid var(--control-border); border-radius: var(--radius-md); line-height: 1.4; }
+.eds-control--sm { min-height: 32px; padding: 6px 12px; font-size: 12px; border-radius: var(--radius-sm); }
+.eds-control--md { min-height: 40px; padding: 9px 16px; }
+.eds-control--lg { min-height: 48px; padding: 12px 20px; font-size: 16px; border-radius: var(--radius-lg); }
+.eds-button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); font-weight: 600; cursor: pointer; text-decoration: none; background: var(--surface); color: var(--text); }
+.eds-button--primary { background: var(--accent); border-color: var(--accent); color: var(--control-check); }
+.eds-button--ghost { background: transparent; border-color: transparent; color: var(--accent); }
+.eds-button--danger { background: var(--status-error-bg); border-color: var(--status-error-fg); color: var(--status-error-fg); }
+.eds-button:hover:not(:disabled) { filter: brightness(.94); }
+.eds-button--secondary:hover:not(:disabled), .eds-button--ghost:hover:not(:disabled) { background: var(--tint); border-color: var(--accent); color: var(--accent); filter: none; }
+.eds-input, .eds-select { background: var(--surface); color: var(--text); min-width: 0; max-width: 100%; }
+.eds-input::placeholder { color: var(--muted); opacity: 1; }
+.eds-select { padding-right: 32px; }
+.eds-button:focus-visible, .eds-input:focus-visible, .eds-select:focus-visible, .eds-table-container:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.eds-input[aria-invalid="true"], .eds-select[aria-invalid="true"] { border-color: var(--status-error-fg); }
+.eds-button:disabled, .eds-input:disabled, .eds-select:disabled { background: var(--disabled-bg); color: var(--disabled-fg); border-color: var(--line); cursor: not-allowed; }
+.eds-button[aria-busy="true"] { cursor: wait; }
+.eds-badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; line-height: 1.5; background: var(--status-bg); color: var(--status-fg); }
+.eds-status--neutral { --status-bg: var(--status-neutral-bg); --status-fg: var(--status-neutral-fg); }
+.eds-status--success { --status-bg: var(--status-success-bg); --status-fg: var(--status-success-fg); }
+.eds-status--warning { --status-bg: var(--status-warning-bg); --status-fg: var(--status-warning-fg); }
+.eds-status--error { --status-bg: var(--status-error-bg); --status-fg: var(--status-error-fg); }
+.eds-data--neutral { --metric-color: var(--text); }
+.eds-data--salary { --metric-color: var(--data-salary); }
+.eds-data--people { --metric-color: var(--data-people); }
+.eds-data--flow { --metric-color: var(--data-flow); }
+.eds-metric { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.eds-metric__label { display: flex; align-items: center; gap: var(--space-2); font-size: 14px; color: var(--muted); font-weight: 500; }
+.eds-metric__label svg { flex-shrink: 0; color: var(--metric-color); }
+.eds-metric__value { color: var(--metric-color); font-size: 32px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.eds-metric__value small { font-size: 14px; font-weight: 500; margin-left: var(--space-1); }
+.eds-metric__description { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.eds-metric-panel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-6) 0; }
+.eds-metric-panel > .eds-metric { padding: 0 var(--space-6); }
+.eds-metric-panel > .eds-metric + .eds-metric { border-left: 1px solid var(--line); }
+.eds-table-container { overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
+.eds-table { width: 100%; border-collapse: collapse; color: var(--text); font-size: 14px; font-variant-numeric: tabular-nums; }
+.eds-table th, .eds-table td { padding: 16px; text-align: start; border-bottom: 1px solid var(--line); }
+.eds-table thead th { color: var(--muted); background: var(--bg); font-size: 12px; font-weight: 500; }
+.eds-table tbody tr:last-child > * { border-bottom: 0; }
+.eds-table tbody tr:hover { background: var(--tint); }
+.eds-table [data-numeric] { text-align: end; white-space: nowrap; }
+@media(max-width: 600px) {
+  .eds-metric-panel { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); padding: 0 var(--space-5); }
+  .eds-metric-panel > .eds-metric { padding: var(--space-5) 0; }
+  .eds-metric-panel > .eds-metric + .eds-metric { border-left: 0; border-top: 1px solid var(--line); }
+  .eds-metric__value { font-size: 28px; }
+}

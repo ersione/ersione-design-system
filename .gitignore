@@ -4,3 +4,6 @@ node_modules/
 .env.*
 .openai/*.tar*
 .local-archive/
+
+lib/
+examples/company-lens/qa/

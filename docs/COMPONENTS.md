@@ -21,4 +21,4 @@
 - **Metric**: salary, people, flow highlights
 - **MetricPanel**: cards or unified; S/M/L is not required
 
-React API는 후속 구현 대상. HTML 프로토타입 및 Figma 초기 명세와 구분합니다.
+React v0.2 제공: Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer. 그 외 항목은 HTML/Figma 명세이며 React API는 후속 구현 대상입니다. API와 접근성 책임은 [PACKAGE.md](PACKAGE.md)를 참고하세요.

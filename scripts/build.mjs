@@ -6,7 +6,7 @@ const declaration=(entries)=>Object.entries(entries).map(([k,v])=>`  --${k}: ${v
 let css='/* Generated from tokens/tokens.json. Do not edit by hand. */\n';
 for(const [name,values] of Object.entries(tokens.themes)){
  const [brand,mode]=name.split('-');
- css+=`.app[data-brand="${brand}"][data-dark="${mode==='dark'}"] {\n${declaration(values)}\n}\n`;
+ css+=`.app[data-brand="${brand}"][data-dark="${mode==='dark'}"],\n.eds-theme[data-brand="${brand}"][data-dark="${mode==='dark'}"] {\n${declaration(values)}\n}\n`;
 }
 css+=':root {\n'+declaration(Object.fromEntries(Object.entries(tokens.space).map(([k,v])=>['space-'+k,v+'px'])))+'\n';
 css+=declaration(Object.fromEntries(Object.entries(tokens.radius).map(([k,v])=>['radius-'+k,v+'px'])))+'\n}\n';

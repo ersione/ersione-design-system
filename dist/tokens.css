@@ -1,5 +1,6 @@
 /* Generated from tokens/tokens.json. Do not edit by hand. */
-.app[data-brand="blue"][data-dark="false"] {
+.app[data-brand="blue"][data-dark="false"],
+.eds-theme[data-brand="blue"][data-dark="false"] {
   --bg: #f6f8fc;
   --surface: #ffffff;
   --text: #182235;
@@ -26,7 +27,8 @@
   --accent: #2563eb;
   --tint: #edf3ff;
 }
-.app[data-brand="orange"][data-dark="false"] {
+.app[data-brand="orange"][data-dark="false"],
+.eds-theme[data-brand="orange"][data-dark="false"] {
   --bg: #f6f8fc;
   --surface: #ffffff;
   --text: #182235;
@@ -53,7 +55,8 @@
   --accent: #b84300;
   --tint: #fff0e5;
 }
-.app[data-brand="blue"][data-dark="true"] {
+.app[data-brand="blue"][data-dark="true"],
+.eds-theme[data-brand="blue"][data-dark="true"] {
   --bg: #101620;
   --surface: #192231;
   --text: #edf2fa;
@@ -80,7 +83,8 @@
   --accent: #93b4ff;
   --tint: #243858;
 }
-.app[data-brand="orange"][data-dark="true"] {
+.app[data-brand="orange"][data-dark="true"],
+.eds-theme[data-brand="orange"][data-dark="true"] {
   --bg: #101620;
   --surface: #192231;
   --text: #edf2fa;
