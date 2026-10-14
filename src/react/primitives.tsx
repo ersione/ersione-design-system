@@ -125,9 +125,9 @@ export type PaginationProps = Omit<ComponentProps<"nav">, "children"> & {
 /** Host supplies links (including Next Link/Vue-equivalent markup) or buttons. */
 export function Pagination({ page, totalPages, previous, next, onPageChange, className, ...props }: PaginationProps) {
   return <nav aria-label="페이지 이동" {...props} className={cx("eds-pagination", className)}>
-    {previous ?? <Button variant="secondary" size="sm" disabled={!onPageChange || page <= 1} onClick={() => onPageChange?.(page - 1)}>이전</Button>}
+    {previous ?? <Button variant="secondary" size="sm" disabled={!onPageChange || page <= 1} onClick={onPageChange ? () => onPageChange(page - 1) : undefined}>이전</Button>}
     <span aria-current="page">{page} / {totalPages} 페이지</span>
-    {next ?? <Button variant="secondary" size="sm" disabled={!onPageChange || page >= totalPages} onClick={() => onPageChange?.(page + 1)}>다음</Button>}
+    {next ?? <Button variant="secondary" size="sm" disabled={!onPageChange || page >= totalPages} onClick={onPageChange ? () => onPageChange(page + 1) : undefined}>다음</Button>}
   </nav>;
 }
 
