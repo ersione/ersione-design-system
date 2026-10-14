@@ -161,3 +161,19 @@
 .eds-data--rose { --metric-color: var(--palette-rose); --metric-tint: var(--palette-rose-tint); }
 
 .eds-data--orange { --metric-color: var(--palette-orange); --metric-tint: var(--palette-orange-tint); }
+
+/* Three independent palette levels: foreground, tint, subtle surface. */
+.eds-data--blue { --metric-color: var(--palette-blue); --metric-tint: var(--palette-blue-tint); --metric-subtle: var(--palette-blue-subtle); }
+.eds-data--teal { --metric-color: var(--palette-teal); --metric-tint: var(--palette-teal-tint); --metric-subtle: var(--palette-teal-subtle); }
+.eds-data--orange { --metric-color: var(--palette-orange); --metric-tint: var(--palette-orange-tint); --metric-subtle: var(--palette-orange-subtle); }
+.eds-data--purple { --metric-color: var(--palette-purple); --metric-tint: var(--palette-purple-tint); --metric-subtle: var(--palette-purple-subtle); }
+.eds-data--rose { --metric-color: var(--palette-rose); --metric-tint: var(--palette-rose-tint); --metric-subtle: var(--palette-rose-subtle); }
+.eds-data--gray { --metric-color: var(--palette-gray); --metric-tint: var(--palette-gray-tint); --metric-subtle: var(--palette-gray-subtle); }
+
+.eds-data-panel { box-sizing: border-box; min-width: 0; background: var(--metric-subtle); color: var(--text); border: 1px solid var(--line); border-radius: var(--radius-lg); }
+.eds-data-panel--sm { padding: 12px; }.eds-data-panel--md { padding: 20px; }.eds-data-panel--lg { padding: 28px; }
+.eds-data-badge { box-sizing: border-box; display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 6px; max-width: 100%; background: var(--metric-tint); color: var(--metric-color); border: 1px solid color-mix(in srgb, var(--metric-color) 18%, var(--metric-tint)); border-radius: var(--radius-sm); line-height: 1.4; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.eds-data-badge--sm { padding: 4px 7px; font-size: 12px; }.eds-data-badge--md { padding: 6px 10px; font-size: 14px; }.eds-data-badge--lg { padding: 8px 12px; font-size: 16px; }
+.eds-data-badge__label { font-size: .85em; font-weight: 500; }
+.eds-data-badge .eds-highlight { font-size: 1.35em; letter-spacing: -.3px; }
+.eds-data-badge .eds-highlight--muted { color: var(--muted); font-size: 1em; }

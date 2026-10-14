@@ -3,8 +3,9 @@ export function readChartTheme(element: Element) {
   const style = getComputedStyle(element);
   const token = (name: string) => style.getPropertyValue(`--${name}`).trim();
   return {
-    palette: { blue: token("palette-blue"), teal: token("palette-teal"), orange: token("palette-orange"), purple: token("palette-purple"), rose: token("palette-rose") },
-    tints: { blue: token("palette-blue-tint"), teal: token("palette-teal-tint"), orange: token("palette-orange-tint"), purple: token("palette-purple-tint"), rose: token("palette-rose-tint") },
+    palette: { blue: token("palette-blue"), teal: token("palette-teal"), orange: token("palette-orange"), purple: token("palette-purple"), rose: token("palette-rose"), gray: token("palette-gray") },
+    tints: { blue: token("palette-blue-tint"), teal: token("palette-teal-tint"), orange: token("palette-orange-tint"), purple: token("palette-purple-tint"), rose: token("palette-rose-tint"), gray: token("palette-gray-tint") },
+    subtles: Object.fromEntries(["blue", "teal", "orange", "purple", "rose", "gray"].map(color => [color, token(`palette-${color}-subtle`)])),
     colors: { primary: token("data-primary"), people: token("data-people"), salary: token("data-salary"), flow: token("data-flow"), joiners: token("data-joiners"), departures: token("data-departures"),
       error: token("status-error-fg"), warning: token("status-warning-fg"), grid: token("chart-grid"), label: token("chart-label"), tooltipBackground: token("chart-tooltip-bg"), tooltipText: token("chart-tooltip-fg"),
       peopleFill: token("data-people-tint"), salaryFill: token("data-salary-tint"), primaryFill: token("data-primary-tint") },

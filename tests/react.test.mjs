@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup as render } from 'react-dom/server';
-import { Navigation, NavigationLink, DataHighlight, HighlightPanel, Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer, Checkbox, Radio, Switch, Textarea, Alert, Card, Progress, Skeleton, Accordion, Pagination, Tabs, Toast } from '../lib/react/index.js';
+import { DataPanel, DataBadge, Navigation, NavigationLink, DataHighlight, HighlightPanel, Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer, Checkbox, Radio, Switch, Textarea, Alert, Card, Progress, Skeleton, Accordion, Pagination, Tabs, Toast } from '../lib/react/index.js';
 
 test('buttons avoid accidental form submission and block submissions while loading', () => {
   assert.match(render(h(Button, null, 'Save')), /type="button"/);
@@ -87,4 +87,10 @@ test('highlights preserve signed/zero/missing values without assigning success o
   const html=render(h(HighlightPanel,null,h(DataHighlight,{tone:'blue',size:'lg',unit:'명',secondary:'+31.7%'},0),h(DataHighlight,{tone:'teal'},'-0.6%'),h(DataHighlight,{muted:true},'비교 자료 없음')));
   assert.match(html,/0<small/); assert.match(html,/-0.6%/); assert.match(html,/eds-highlight__secondary/); assert.match(html,/eds-highlight--muted/);
   assert.doesNotMatch(html,/role="alert"|eds-status--error/);
+});
+
+test('soft panels and badges compose zero and missing values with neutral labels', () => {
+  const html=render(h(DataPanel,{tone:'rose','aria-label':'Usage'},h(DataBadge,{tone:'gray',label:'General'},h(DataHighlight,{tone:'gray',unit:'위'},0)),h(DataBadge,{tone:'rose'},h(DataHighlight,{muted:true},'자료 없음'))));
+  assert.match(html,/aria-label="Usage"/); assert.match(html,/0<small/); assert.match(html,/General/); assert.match(html,/자료 없음/);
+  assert.doesNotMatch(html,/role="(?:alert|status)"/);
 });

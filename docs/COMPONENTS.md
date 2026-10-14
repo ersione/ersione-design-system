@@ -36,3 +36,18 @@ CSS 클래스와 tokens.css는 바닐라/Vue에서도 동일하게 사용 가능
 
 ## v0.4 자유 팔레트와 프로젝트별 매핑
 DataHighlight / HighlightPanel의 tone은 primary, neutral 또는 blue/teal/orange/purple/rose 중 선택할 수 있습니다. ChartTheme.palette도 같은 이름을 제공합니다. 인원·급여 같은 도메인 규칙은 호스트가 정하며 기존 DataTone 별칭은 이전 소비자 호환용입니다. 취소/닫기는 보조 동작, 삭제 등 위험한 동작은 danger로 구분합니다.
+
+## DataPanel / DataBadge (v0.5.1)
+
+DataPanel: `tone` = blue/teal/orange/purple/rose/gray, `padding` = sm/md/lg. div로 렌더링하며 영역 배경은 palette-*-subtle, 본문은 text입니다.
+DataBadge: 같은 `tone`, `size` = sm/md/lg, 선택적인 `label`. span으로 렌더링하며 palette-*-tint 배경과 기본색 글자를 사용합니다. children에 DataHighlight를 넣어 숫자를 강조합니다. 상태나 증가/감소의 의미는 강제하지 않습니다.
+
+```tsx
+<DataPanel tone="rose">
+  <p>넓은 영역 · 설명은 중립색</p>
+  <DataBadge tone="rose" label="순위"><DataHighlight tone="rose" unit="위">8</DataHighlight></DataBadge>
+  <DataBadge tone="gray" label="일반"><DataHighlight tone="gray" unit="위">85</DataHighlight></DataBadge>
+</DataPanel>
+```
+
+바닐라/Vue에서도 eds-data-panel + eds-data-panel--md + eds-data--rose 및 eds-data-badge + eds-data-badge--md + eds-data--rose 클래스를 조합할 수 있습니다.

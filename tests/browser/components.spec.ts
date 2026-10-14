@@ -157,3 +157,26 @@ test('chart theme observer ignores layout-only style changes and cleans up', asy
   await expect(example).toHaveAttribute('data-theme-updates','2');
   await expect(page.locator('[data-chart-theme]')).toHaveAttribute('data-chart-theme','#a4c9ff');
 });
+
+test('soft panels and badges keep independent palette levels in all four themes', async ({page}) => {
+  for (const brand of ['blue','orange']) for (const dark of [false,true]) {
+    await page.getByRole('combobox',{name:'브랜드 테마'}).selectOption(brand);
+    await page.getByRole('switch',{name:'다크 모드',exact:true}).setChecked(dark);
+    for (const tone of ['blue','teal','orange','purple','rose','gray']) {
+      const panel=page.locator(`[data-soft-tone="${tone}"]`);
+      const levels=await panel.evaluate((node,color)=>{
+        const badge=node.querySelector('.eds-data-badge')!;
+        const value=node.querySelector('.eds-highlight')!;
+        const style=getComputedStyle(node);
+        const rgb=(hex:string)=>`rgb(${hex.slice(1).match(/../g)!.map(x=>parseInt(x,16)).join(', ')})`;
+        return {panel:getComputedStyle(node).backgroundColor,badge:getComputedStyle(badge).backgroundColor,value:getComputedStyle(value).color,
+          subtle:rgb(style.getPropertyValue(`--palette-${color}-subtle`).trim()),tint:rgb(style.getPropertyValue(`--palette-${color}-tint`).trim()),base:rgb(style.getPropertyValue(`--palette-${color}`).trim()),text:getComputedStyle(node).color,neutral:rgb(style.getPropertyValue('--text').trim())};
+      },tone);
+      expect(levels.panel).toBe(levels.subtle);expect(levels.badge).toBe(levels.tint);expect(levels.value).toBe(levels.base);expect(levels.text).toBe(levels.neutral);expect(levels.panel).not.toBe(levels.badge);
+    }
+  }
+  for (const width of [1280,390,320]) {
+    await page.setViewportSize({width,height:900});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }
+});

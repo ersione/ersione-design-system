@@ -2,7 +2,7 @@ import type { ComponentProps, ElementType, ReactNode } from "react";
 
 const cx = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(" ");
 export type ControlSize = "sm" | "md" | "lg";
-export type PaletteColor = "blue" | "teal" | "orange" | "purple" | "rose";
+export type PaletteColor = "blue" | "teal" | "orange" | "purple" | "rose" | "gray";
 export type HighlightTone = "primary" | "neutral" | PaletteColor;
 /** Legacy data aliases remain for v0.2 consumers; new projects choose palette colors. */
 export type DataTone = "neutral" | "primary" | "salary" | "people" | "flow" | "joiners" | "departures";
@@ -158,4 +158,17 @@ export function DataHighlight({ tone = "primary", size = "md", unit, secondary, 
 export type HighlightPanelProps = ComponentProps<"section"> & { tone?: HighlightTone | DataTone };
 export function HighlightPanel({ tone = "primary", className, ...props }: HighlightPanelProps) {
   return <section {...props} className={cx("eds-highlight-panel", `eds-data--${tone}`, className)} />;
+}
+
+/** Soft color region. Compose badges/highlights inside; labels stay neutral. */
+export type DataPanelProps = ComponentProps<"div"> & { tone?: PaletteColor; padding?: ControlSize };
+export function DataPanel({ tone = "gray", padding = "md", className, ...props }: DataPanelProps) {
+  return <div {...props} className={cx("eds-data-panel", `eds-data--${tone}`, `eds-data-panel--${padding}`, className)} />;
+}
+/** Compact tinted container; compose DataHighlight for a larger value. */
+export type DataBadgeProps = ComponentProps<"span"> & { tone?: PaletteColor; size?: ControlSize; label?: ReactNode };
+export function DataBadge({ tone = "gray", size = "md", label, className, children, ...props }: DataBadgeProps) {
+  return <span {...props} className={cx("eds-data-badge", `eds-data--${tone}`, `eds-data-badge--${size}`, className)}>
+    {label != null && <span className="eds-data-badge__label">{label}</span>}{children}
+  </span>;
 }

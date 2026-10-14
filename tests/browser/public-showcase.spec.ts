@@ -52,6 +52,7 @@ test('published React playground and palette assets resolve from dist', async ({
   await nav.getByRole('link',{name:'월별 추이'}).click();
   await expect(nav.locator('[aria-current=page]')).toHaveText('월별 추이');
   await page.goto('/dist/docs/palette.html');
-  await expect(page.getByRole('heading',{name:'함께 쓰는 다섯 가지 색'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'여섯 가지 색 · 기본색 / tint / subtle'})).toBeVisible();
+  await expect(page.locator('[data-token="palette-gray"]')).toHaveText('#475569');
   await expect(page.locator('[data-token="chart-series-3"]')).toHaveText('#c2410c');
 });

@@ -1,7 +1,7 @@
 import packageInfo from "../../package.json";
 import { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { Navigation, NavigationLink, DataHighlight, HighlightPanel, Accordion, Alert, Badge, Button, Card, Checkbox, Dialog, Input, Metric, MetricPanel, Pagination, Progress, Radio, Select, Skeleton, Switch, Table, TableContainer, Tabs, Textarea, Toast } from "../../src/react/index.js";
+import { Navigation, NavigationLink, DataPanel, DataBadge, DataHighlight, HighlightPanel, Accordion, Alert, Badge, Button, Card, Checkbox, Dialog, Input, Metric, MetricPanel, Pagination, Progress, Radio, Select, Skeleton, Switch, Table, TableContainer, Tabs, Textarea, Toast } from "../../src/react/index.js";
 
 import { observeChartTheme, type ChartTheme } from "../../src/react/chart-theme.js";
 
@@ -14,6 +14,14 @@ function SharedDataExample() {
   return <div ref={ref} data-theme-observer data-theme-updates={updates} data-chart-theme={theme?.palette.blue}>
     <Navigation aria-label="공통 메뉴 예시"><NavigationLink href="#overview" active={active === "overview"} onClick={event => { event.preventDefault(); setActive("overview"); }} icon={<svg viewBox="0 0 20 20"><path d="M3 15L8 8L12 11L17 4" fill="none" stroke="currentColor" strokeWidth="2"/></svg>}>개요</NavigationLink><NavigationLink href="#charts" active={active === "charts"} onClick={event => { event.preventDefault(); setActive("charts"); }}>월별 추이</NavigationLink></Navigation>
     <HighlightPanel style={{marginTop:16}}><h3>핵심 수치 · 가상 데이터</h3><div className="row"><DataHighlight tone="blue" size="lg" unit="명" secondary="+31.7%">+83</DataHighlight><DataHighlight tone="teal">-0.6%</DataHighlight><DataHighlight tone="teal" unit="명">156</DataHighlight><DataHighlight tone="orange" unit="명">72</DataHighlight><DataHighlight muted>비교 자료 없음</DataHighlight></div></HighlightPanel>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,240px),1fr))',gap:12,marginTop:20}} aria-label="연한 영역과 수치 배지">
+      {(["blue","teal","orange","purple","rose","gray"] as const).map(tone=><DataPanel key={tone} tone={tone} data-soft-tone={tone}>
+        <p style={{margin:'0 0 12px',color:'var(--muted)'}}>아주 연한 영역 · {tone}</p>
+        <DataBadge tone={tone} label="핵심 수치"><DataHighlight tone={tone} unit="명">83</DataHighlight></DataBadge>
+        <p style={{margin:'12px 0 0',color:'var(--muted)'}}>설명은 중립색, 숫자는 기본색</p>
+      </DataPanel>)}
+    </div>
+    <DataPanel tone="rose" style={{marginTop:16}} aria-label="중첩 색상 예시"><h3>같은 계열의 영역과 배지</h3><div className="row">{(["sm","md","lg"] as const).map(size=><DataBadge key={size} size={size} tone="rose" label={size.toUpperCase()}><DataHighlight tone="rose" unit="위">8</DataHighlight></DataBadge>)}<DataBadge tone="gray" label="일반"><DataHighlight tone="gray" unit="위">85</DataHighlight></DataBadge></div></DataPanel>
     <svg role="img" aria-label="공통 차트 색상 예시" viewBox="0 0 600 150" style={{width:'100%',marginTop:20}}>
       {[30,70,110].map(y=><path key={y} d={`M20 ${y}H580`} stroke="var(--chart-grid)"/>)}
       <path d="M20 110L130 90L240 100L350 50L460 65L580 20" stroke="var(--palette-blue)" strokeWidth="2" fill="none"/>

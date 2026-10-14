@@ -1,4 +1,4 @@
-# Ersione Design System v0.5.0
+# Ersione Design System v0.5.1
 
 여러 프로젝트가 공유하는 디자인 토큰, 공통 CSS, React 컴포넌트와 시각 쇼케이스입니다.
 기존 Ersione 심볼과 Noto Sans KR, 블루/오렌지 브랜드, 라이트/다크 테마를 지원합니다.
@@ -14,9 +14,10 @@
 
 - **Navigation / NavigationLink**: S/M/L, 선택적 아이콘, 현재 메뉴 표시, 키보드 포커스. Next 등 라우터는 `as={Link}`로 연결합니다.
 - **DataHighlight / HighlightPanel**: S/M/L 수치 강조, 단위·보조 변화율, 자료 없음 상태, 관련 지표를 묶는 표면.
-- **컬러 팔레트**: blue/teal/orange/purple/rose와 각 tint. 특정 색을 인원·급여 등에 전역으로 고정하지 않습니다.
+- **컬러 팔레트**: blue/teal/orange/purple/rose/gray와 각 tint·subtle. 특정 색을 인원·급여 등에 전역으로 고정하지 않습니다.
 - **공통 UI 역할**: primary, secondary/neutral, danger/error, success, warning. 취소·닫기는 보조 동작, 삭제 등 위험한 동작은 danger로 구분합니다.
 - **Canvas 차트 테마**: named palette·범주 팔레트, 폰트·선·그리드·범례·툴팁 설정, 테마 변경 감지. 차트 라이브러리와 데이터 처리는 호스트가 담당합니다.
+- **DataPanel / DataBadge**: 아주 연한 영역 배경과 연한 배지 배경을 분리하고 DataHighlight로 숫자를 강조합니다. S/M/L, 여섯 색, 라이트/다크 지원.
 - **기본 컴포넌트**: Button, Input, Select, Textarea, Checkbox, Radio, Switch, Badge, Alert, Tabs, Dialog, Toast, Progress, Skeleton, Accordion, Pagination, Card, Metric, MetricPanel, Table / TableContainer.
 
 기존 `data-people/salary/flow` 등의 별칭은 이전 소비자 호환을 위해 유지합니다. 새 프로젝트에서는 이름 기반 팔레트를 고르고 데이터 매핑을 프로젝트 안에 둡니다. [컬러 사용 기준](docs/COLORS.md)
@@ -27,16 +28,16 @@ Node.js 20.11 이상. 비공개 Git 저장소 접근 권한이 필요하며 Reac
 Git 설치의 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 검증한 SHA 또는 릴리스 태그를 고정하세요.
 
 ```bash
-npm install github:ersione/ersione-design-system#v0.5.0
+npm install github:ersione/ersione-design-system#v0.5.1
 ```
 
 ### 소비 프로젝트 업데이트
 
 Company Lens는 검증한 커밋 SHA에 고정되어 있습니다. 인자 없이 `npm install`을 다시 실행하면 같은 버전을 설치하므로, 업데이트할 새 릴리스 태그나 SHA를 명시합니다.
-예를 들어 디자인 시스템의 `v0.5.1` 태그를 생성하고 push한 다음 Company Lens에서 실행합니다. 아래 버전은 다음 릴리스 예시입니다.
+예를 들어 디자인 시스템의 `v0.5.2` 태그를 생성하고 push한 다음 Company Lens에서 실행합니다. 아래 버전은 다음 릴리스 예시입니다.
 
 ```bash
-npm install github:ersione/ersione-design-system#v0.5.1
+npm install github:ersione/ersione-design-system#v0.5.2
 npm run typecheck
 npm run build
 ```
@@ -46,7 +47,7 @@ npm run build
 
 ### 버전 운영 기준
 
-- 현재 디자인 시스템 버전은 `0.5.0`입니다. 기존 버전과 태그는 유지합니다.
+- 현재 디자인 시스템 버전은 `0.5.1`입니다. 기존 버전과 태그는 유지합니다.
 - 일반적인 스타일 조정, 버그 수정과 호환되는 소규모 개선은 마지막 자리만 올립니다: `0.5.0` → `0.5.1` → `0.5.2`.
 - 매 작업마다 가운데 자리를 올리지 않습니다. 큰 기능 묶음이나 호환성 변경이 필요할 때 별도로 결정하고 변경 기록에 설명합니다.
 - 문서·공개 예제만 수정하고 소비 패키지 동작이 바뀌지 않으면 패키지 버전을 올리지 않아도 됩니다.

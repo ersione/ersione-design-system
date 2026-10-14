@@ -37,3 +37,7 @@ Company Lens의 인원=블루, 금액=틸, 취득=틸, 상실=오렌지는 해�
 참고: [Atlassian color roles](https://atlassian.design/foundations/color), [Carbon color system](https://carbondesignsystem.com/building-blocks/foundations/color/overview).
 
 갈색에 가까운 기존 골드 대신 선명한 오렌지로 조정했으며, 토큰과 tone 이름은 orange로 통일합니다.
+
+## 농도 단계 (v0.5.1)
+
+기존 다섯 가지 기본색은 유지하고 gray를 추가합니다. 각 색은 `palette-{color}`(글자·숫자), `palette-{color}-tint`(연한색), `palette-{color}-subtle`(아주 연한색)을 제공합니다. tint/subtle은 농도 이름이며 도메인 의미를 강제하지 않습니다. 넓은 영역에는 subtle, 작은 수치 배지에는 tint를 조합하는 패턴을 권장합니다. 라이트·다크 모두 같은 API로 전환됩니다. 회색은 범주 차트의 여섯 번째 색으로 자동 추가하지 않으며, 선택적으로 사용할 수 있습니다.
