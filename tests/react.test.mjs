@@ -84,7 +84,7 @@ test('shared navigation preserves router adapters, active state and ordinary anc
   assert.doesNotMatch(html,/role="tab/);
 });
 test('highlights preserve signed/zero/missing values without assigning success or error status', () => {
-  const html=render(h(HighlightPanel,null,h(DataHighlight,{tone:'people',size:'lg',unit:'명',secondary:'+31.7%'},0),h(DataHighlight,{tone:'salary'},'-0.6%'),h(DataHighlight,{muted:true},'비교 자료 없음')));
+  const html=render(h(HighlightPanel,null,h(DataHighlight,{tone:'blue',size:'lg',unit:'명',secondary:'+31.7%'},0),h(DataHighlight,{tone:'teal'},'-0.6%'),h(DataHighlight,{muted:true},'비교 자료 없음')));
   assert.match(html,/0<small/); assert.match(html,/-0.6%/); assert.match(html,/eds-highlight__secondary/); assert.match(html,/eds-highlight--muted/);
   assert.doesNotMatch(html,/role="alert"|eds-status--error/);
 });

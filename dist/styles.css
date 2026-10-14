@@ -153,3 +153,10 @@
 .eds-highlight--muted { color: var(--muted); font-size: 18px; font-weight: 500; }
 .eds-highlight-panel { box-sizing: border-box; padding: 24px; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-top: 3px solid var(--metric-color); border-radius: var(--radius-card); }
 @media(max-width: 600px) { .eds-highlight--lg { font-size: 32px; }.eds-highlight-panel { padding: 20px; } }
+
+/* Freely selectable accent colors. Data meaning is assigned by each product. */
+.eds-data--blue { --metric-color: var(--palette-blue); --metric-tint: var(--palette-blue-tint); }
+.eds-data--teal { --metric-color: var(--palette-teal); --metric-tint: var(--palette-teal-tint); }
+.eds-data--amber { --metric-color: var(--palette-amber); --metric-tint: var(--palette-amber-tint); }
+.eds-data--purple { --metric-color: var(--palette-purple); --metric-tint: var(--palette-purple-tint); }
+.eds-data--rose { --metric-color: var(--palette-rose); --metric-tint: var(--palette-rose-tint); }

@@ -123,11 +123,11 @@ test('navigation and canvas theme adapter share all four themes', async ({page})
   for(const brand of ['blue','orange']) for(const dark of [false,true]) {
     await page.getByRole('combobox',{name:'브랜드 테마'}).selectOption(brand);
     await page.getByRole('switch',{name:'다크 모드',exact:true}).setChecked(dark);
-    const expected=await page.locator('body').evaluate(node=>getComputedStyle(node).getPropertyValue('--data-people').trim());
+    const expected=await page.locator('body').evaluate(node=>getComputedStyle(node).getPropertyValue('--palette-blue').trim());
     await expect(page.locator('[data-chart-theme]')).toHaveText(expected);
     const colors=await page.locator('[data-chart-series]').evaluateAll(nodes=>nodes.map(n=>getComputedStyle(n).color));
     expect(new Set(colors).size).toBe(5);
-    const highlight=page.locator('.eds-highlight.eds-data--people').first();
+    const highlight=page.locator('.eds-highlight.eds-data--blue').first();
     const valueColor=await highlight.evaluate(node=>getComputedStyle(node).color);
     expect(valueColor).toBe(colors[0]);
   }

@@ -2,6 +2,9 @@ import type { ComponentProps, ElementType, ReactNode } from "react";
 
 const cx = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(" ");
 export type ControlSize = "sm" | "md" | "lg";
+export type PaletteColor = "blue" | "teal" | "amber" | "purple" | "rose";
+export type HighlightTone = "primary" | "neutral" | PaletteColor;
+/** Legacy data aliases remain for v0.2 consumers; new projects choose palette colors. */
 export type DataTone = "neutral" | "primary" | "salary" | "people" | "flow" | "joiners" | "departures";
 export type StatusTone = "neutral" | "success" | "warning" | "error";
 
@@ -145,14 +148,14 @@ export function NavigationLink({ active = false, icon, as: Link = "a", className
     {icon != null && <span className="eds-navigation__icon" aria-hidden="true">{icon}</span>}<span>{children}</span>
   </Link>;
 }
-export type DataHighlightProps = ComponentProps<"strong"> & { tone?: DataTone; size?: ControlSize; unit?: ReactNode; secondary?: ReactNode; muted?: boolean };
+export type DataHighlightProps = ComponentProps<"strong"> & { tone?: HighlightTone | DataTone; size?: ControlSize; unit?: ReactNode; secondary?: ReactNode; muted?: boolean };
 export function DataHighlight({ tone = "primary", size = "md", unit, secondary, muted = false, className, children, ...props }: DataHighlightProps) {
   return <strong {...props} className={cx("eds-highlight", `eds-data--${tone}`, `eds-highlight--${size}`, muted && "eds-highlight--muted", className)}>
     <span>{children}{unit != null && <small className="eds-highlight__unit">{unit}</small>}</span>
     {secondary != null && <small className="eds-highlight__secondary">{secondary}</small>}
   </strong>;
 }
-export type HighlightPanelProps = ComponentProps<"section"> & { tone?: DataTone };
+export type HighlightPanelProps = ComponentProps<"section"> & { tone?: HighlightTone | DataTone };
 export function HighlightPanel({ tone = "primary", className, ...props }: HighlightPanelProps) {
   return <section {...props} className={cx("eds-highlight-panel", `eds-data--${tone}`, className)} />;
 }
