@@ -24,3 +24,13 @@
 - 셀렉트의 펼친 목록 공통 테마·선택·disabled 스타일 추가.
 - Chromium 브라우저 검사 8개 통과. 네 가지 popup 테마, pointer 선택, Home/End/Enter/Escape 및 포커스 복귀 포함.
 - 비지원 브라우저와 multiple/size 목록은 기본 picker로 유지. 브라우저 전용 JavaScript를 추가하지 않음.
+
+
+## v0.5 공개 쇼케이스·색상 정리 — 2026-10-14
+
+- 홈페이지에 Navigation / NavigationLink, SM/MD/LG 선택, 현재 메뉴, 수치 강조색·크기·보조 변화율과 팔레트 추가.
+- 실제 React playground를 공개 dist/examples/react에 번들링하고 팔레트·문서 링크 검증.
+- README·패키지 문서 갱신, package.json과 README 버전 일치 검사. 홈페이지/React 예제 버전은 package.json에서 생성.
+- 네 테마 및 320/390/1280px 브라우저 시나리오 13개 통과(공개 산출물 검사 2개 포함). SSR 검사 8개와 색상 대비/정적 파일 검사를 수행.
+- 기존 갈색 골드를 오렌지로 조정하고 amber 토큰·CSS·타입·차트 API를 제거.
+- Company Lens의 중복 통계 메뉴 제거 및 고용 변화 강조색을 퍼플로 매핑. 서비스 배포 검증은 해당 저장소 docs/design-system.md에서 관리.

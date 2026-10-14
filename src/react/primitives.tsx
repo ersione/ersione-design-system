@@ -2,7 +2,7 @@ import type { ComponentProps, ElementType, ReactNode } from "react";
 
 const cx = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(" ");
 export type ControlSize = "sm" | "md" | "lg";
-export type PaletteColor = "blue" | "teal" | "amber" | "purple" | "rose";
+export type PaletteColor = "blue" | "teal" | "orange" | "purple" | "rose";
 export type HighlightTone = "primary" | "neutral" | PaletteColor;
 /** Legacy data aliases remain for v0.2 consumers; new projects choose palette colors. */
 export type DataTone = "neutral" | "primary" | "salary" | "people" | "flow" | "joiners" | "departures";

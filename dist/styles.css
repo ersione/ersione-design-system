@@ -157,6 +157,7 @@
 /* Freely selectable accent colors. Data meaning is assigned by each product. */
 .eds-data--blue { --metric-color: var(--palette-blue); --metric-tint: var(--palette-blue-tint); }
 .eds-data--teal { --metric-color: var(--palette-teal); --metric-tint: var(--palette-teal-tint); }
-.eds-data--amber { --metric-color: var(--palette-amber); --metric-tint: var(--palette-amber-tint); }
 .eds-data--purple { --metric-color: var(--palette-purple); --metric-tint: var(--palette-purple-tint); }
 .eds-data--rose { --metric-color: var(--palette-rose); --metric-tint: var(--palette-rose-tint); }
+
+.eds-data--orange { --metric-color: var(--palette-orange); --metric-tint: var(--palette-orange-tint); }

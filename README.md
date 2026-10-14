@@ -1,70 +1,90 @@
-# Ersione Design System v0.2
+# Ersione Design System v0.5.0
 
-여러 개인 서비스가 공유하는 디자인 토큰, 공통 CSS, React 컴포넌트와 HTML 쇼케이스입니다.
-기존 Ersione 심볼을 유지하며 Noto Sans KR, 블루/오렌지, 라이트/다크를 지원합니다.
+여러 프로젝트가 공유하는 디자인 토큰, 공통 CSS, React 컴포넌트와 시각 쇼케이스입니다.
+기존 Ersione 심볼과 Noto Sans KR, 블루/오렌지 브랜드, 라이트/다크 테마를 지원합니다.
 
-## 현재 범위
-- `tokens/tokens.json`: 디자인 토큰 원본
-- `tokens/tokens.css`: JSON에서 생성한 CSS 변수
-- `styles.css`: 프레임워크에 독립적인 `eds-*` 공통 클래스
-- `src/react/`: React 19용 공통 컴포넌트 (빌드 결과 `lib/react`)
-- `docs/COMPONENTS.md`: 컴포넌트 목록, 크기와 상태
-- `docs/USAGE.md`: 테마, 데이터 색상, 레이아웃, 접근성, 변경 규칙
-- `showcase/index.html`: 동작 검토용 HTML
-- `figma/state.json`: 같은 Figma 파일을 업데이트하기 위한 ID 기록
-- `dist/`: 공유 사이트용 정적 파일. 실제 회사 데이터와 Company Lens 프로토타입 제외
+## 미리보기
 
-## 실행
-Node.js 20 이상에서 `npm run build`, `npm run check`, `npm run preview`.
-토큰·쇼케이스 생성과 React JavaScript/타입 선언 빌드를 수행합니다. `npm test`는 서버 렌더링과 네이티브 폼 계약을 검사합니다.
+- [공개 쇼케이스 — 메뉴·수치 강조](https://ersione-design-system.ersione.chatgpt.site/#shared-components)
+- [React 컴포넌트 — 실제 패키지 소스로 동작](https://ersione-design-system.ersione.chatgpt.site/examples/react/)
+- [컬러 팔레트·UI 역할·차트](https://ersione-design-system.ersione.chatgpt.site/docs/palette.html)
+- [사용 규칙](https://ersione-design-system.ersione.chatgpt.site/docs/usage.html)
 
-## 설치 상태
-v0.2는 공통 CSS와 React 컴포넌트 20개 계열과 TableContainer를 제공합니다. Git 설치에는 비공개 저장소 접근 권한이 필요합니다.
-설치 시 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 서비스에서는 검증한 커밋 SHA 또는 릴리스 태그를 고정하세요.
+## v0.4에서 제공하는 것
+
+- **Navigation / NavigationLink**: S/M/L, 선택적 아이콘, 현재 메뉴 표시, 키보드 포커스. Next 등 라우터는 `as={Link}`로 연결합니다.
+- **DataHighlight / HighlightPanel**: S/M/L 수치 강조, 단위·보조 변화율, 자료 없음 상태, 관련 지표를 묶는 표면.
+- **컬러 팔레트**: blue/teal/orange/purple/rose와 각 tint. 특정 색을 인원·급여 등에 전역으로 고정하지 않습니다.
+- **공통 UI 역할**: primary, secondary/neutral, danger/error, success, warning. 취소·닫기는 보조 동작, 삭제 등 위험한 동작은 danger로 구분합니다.
+- **Canvas 차트 테마**: named palette·범주 팔레트, 폰트·선·그리드·범례·툴팁 설정, 테마 변경 감지. 차트 라이브러리와 데이터 처리는 호스트가 담당합니다.
+- **기본 컴포넌트**: Button, Input, Select, Textarea, Checkbox, Radio, Switch, Badge, Alert, Tabs, Dialog, Toast, Progress, Skeleton, Accordion, Pagination, Card, Metric, MetricPanel, Table / TableContainer.
+
+기존 `data-people/salary/flow` 등의 별칭은 이전 소비자 호환을 위해 유지합니다. 새 프로젝트에서는 이름 기반 팔레트를 고르고 데이터 매핑을 프로젝트 안에 둡니다. [컬러 사용 기준](docs/COLORS.md)
+
+## 설치와 사용
+
+Node.js 20.11 이상. 비공개 Git 저장소 접근 권한이 필요하며 React 소비자는 React 19를 설치해야 합니다.
+Git 설치의 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 검증한 SHA 또는 릴리스 태그를 고정하세요.
 
 ```bash
-npm install git+ssh://git@github.com/ersione/ersione-design-system.git#<commit-sha>
+npm install github:ersione/ersione-design-system#v0.5.0
 ```
 
 ```tsx
-// Next.js root layout / React application entry
-import "@ersione/design-system/styles.css";
-import { Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer } from "@ersione/design-system/react";
+import '@ersione/design-system/styles.css';
+import { Navigation, NavigationLink, DataHighlight, HighlightPanel, Button } from '@ersione/design-system/react';
 
-// Wrap your application; typography is explicitly owned by the application.
-<body className="eds-theme" data-brand="blue" data-dark="false">
-  <Button type="submit">검색</Button>
-</body>
+<div className="eds-theme" data-brand="blue" data-dark="false">
+  <Navigation aria-label="주 메뉴">
+    <NavigationLink href="/" active>개요</NavigationLink>
+    <NavigationLink href="/settings">설정</NavigationLink>
+  </Navigation>
+  <HighlightPanel>
+    <DataHighlight tone="purple" size="lg" unit="명" secondary="+31.7%">83</DataHighlight>
+  </HighlightPanel>
+  <Button variant="secondary">취소</Button>
+</div>
 ```
 
-React는 peer dependency이며 번들에 포함하지 않습니다. React 소비자는 React 19를 설치해야 합니다.
-바닐라 HTML은 동일한 CSS의 `eds-*` 클래스를 사용합니다. Vue 전용 래퍼와 바닐라 JS 동작 API는 아직 제공하지 않습니다.
-색상 테마는 `.eds-theme` 또는 기존 쇼케이스의 `.app`에 적용됩니다.
-전체 사용 예시와 상태 계약은 [패키지 사용법](docs/PACKAGE.md)을 참고하세요.
+- 차트: `@ersione/design-system/charts`의 `readChartTheme(element)`, `observeChartTheme(element, callback)`.
+- 토큰: `@ersione/design-system/tokens.css`, `@ersione/design-system/tokens.json`.
+- 심볼: `@ersione/design-system/symbol.svg`.
+- React는 peer dependency입니다. 바닐라 HTML과 Vue는 동일한 CSS·토큰을 사용할 수 있으며, Vue 전용 컴포넌트 래퍼는 아직 제공하지 않습니다.
+- 폰트 로딩과 전역 reset은 소비 앱이 담당합니다. 공개 쇼케이스에는 로컬 Noto Sans KR와 SIL OFL 1.1 라이선스를 제공합니다.
 
-React 검토 화면: `npm run build:playground` 후 저장소 루트를 정적 서버로 열고 `/examples/react/`를 확인합니다. `npm run test:browser`는 키보드·포커스·폼·페이지 경계와 320/390/1280px 네 테마를 검사합니다. 최초 실행은 `npx playwright install chromium`이 필요합니다.
+상세 API와 동작 계약은 [패키지 사용법](docs/PACKAGE.md), [컴포넌트 목록](docs/COMPONENTS.md), [사용 규칙](docs/USAGE.md)을 참고하세요.
 
-Noto Sans KR 파일은 쇼케이스에 로컬 제공하며 SIL OFL 1.1 라이선스를 함께 보관합니다.
+## 개발과 검증
 
-## Figma
-https://www.figma.com/design/TfjaDsg9mQb5CF5SB6hcFL
-무료 플랜을 고려하여 Foundations / Components / Applications 3페이지를 사용합니다.
-멀티 모드 대신 테마별 단일 모드 컬렉션과 Variant로 표현합니다.
-코드와 Figma는 자동 양방향 동기화되지 않습니다. 토큰을 원본으로 두고 ID를 보존하여 변경을 반영합니다.
+```bash
+npm install
+npm run build          # 토큰 CSS + 정적 쇼케이스 + React JS/타입 선언
+npm run check          # 네 테마 대비, 문서 버전, 정적 파일/스크립트 검사
+npm test               # SSR·폼·컴포넌트 계약
+npm run test:browser   # 키보드·포커스·테마·320/390/1280px
+npm run build:site     # 공개 배포용 dist + 실제 React playground
+npm run preview        # http://127.0.0.1:8766
+```
 
-## 변경
-토큰 변경 → `npm run build` → 쇼케이스 네 테마 확인 → Figma 기존 노드 업데이트 → 버전 태그.
-GitHub 저장소는 비공개이며 공개 Sites에는 디자인 검토용 파일만 게시합니다.
+최초 브라우저 검사에는 `npx playwright install chromium`이 필요합니다.
+`npm run build:playground` 후 저장소 루트 서버의 `/examples/react/`에서도 React 예제를 검토할 수 있습니다.
+버전 변경 시 README 제목도 갱신해야 하며 `npm run check`가 package.json과 일치하는지 확인합니다. 쇼케이스 버전 표시는 빌드 시 package.json에서 생성합니다.
 
-## 공유 링크
-- 공개 쇼케이스: https://ersione-design-system.ersione.chatgpt.site
-- 비공개 GitHub: https://github.com/ersione/ersione-design-system
+## 구조와 배포
 
-Figma 초기 명세: 80개 테마별 컴포넌트 세트 / 284개 variant 컴포넌트와 8개 지표 패턴 원본.
-모든 family가 구현된 것은 아닙니다. React는 목록의 20개 컴포넌트 계열과 TableContainer를 제공합니다. 바닐라 JS 동작 API와 Vue 래퍼는 후속 범위입니다.
-Figma 생성 스크립트는 초기 생성용이며 반복 실행으로 기존 작업을 덮어쓰지 않습니다. 수정 시 state.json의 ID를 기준으로 대상만 업데이트합니다.
+- `tokens/tokens.json`: 토큰 원본. `tokens/tokens.css`는 생성 결과.
+- `styles.css`, `src/react/`: 공통 스타일과 React 소스. `lib/react`는 생성 결과.
+- `showcase/index.html`, `examples/react/`, `docs/palette.html`: 공개 검토 화면.
+- `dist/`: `build:site`가 만드는 공개 정적 산출물. 서비스의 실제 데이터·비밀정보·프로토타입은 게시하지 않습니다.
+- `.openai/hosting.json`: 기존 Sites 프로젝트 ID와 정적 디렉터리. 새 사이트를 만들지 않고 기존 사이트에 배포합니다.
 
-## Figma revision 2 (DRAFT)
-Foundations / Components / Patterns & Applications were expanded in the existing file. Twenty Company Lens desktop frames cover search, results and details across four themes. Final typography clipping/overlap repair remains blocked by the Starter MCP call limit. See [revision notes](docs/FIGMA-REVISION-2.md). This is not a new package release or Sites publication.
+토큰/컴포넌트 변경 → build·check·test·브라우저 검증 → Git push·버전 고정 → 소비 앱 설치·빌드·배포.
+공개 쇼케이스 변경은 `build:site` 후 Sites에 별도로 배포해야 합니다. Git push나 npm 패키지 갱신만으로 공개 사이트가 바뀌지는 않습니다.
 
-- [컬러 팔레트와 사용 기준](docs/COLORS.md) · [시각 팔레트](docs/palette.html)
+## Figma와 변경 기록
+
+[Figma 디자인 파일](https://www.figma.com/design/TfjaDsg9mQb5CF5SB6hcFL)은 초기 디자인과 응용 프레임을 보관합니다.
+코드와 자동으로 양방향 동기화되지 않으며, 이번 v0.4의 메뉴·하이라이트·팔레트 구현이 Figma 전체에 반영됐다는 뜻은 아닙니다.
+기존 ID는 `figma/state.json`에 보관하고, 과거 revision 2 상태는 [해당 기록](docs/FIGMA-REVISION-2.md)을 참고하세요.
+
+[변경 기록](docs/CHANGELOG.md) · [검증 기록](docs/VALIDATION.md) · [비공개 GitHub 저장소](https://github.com/ersione/ersione-design-system)

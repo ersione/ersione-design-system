@@ -10,3 +10,6 @@ examples/company-lens/qa/
 examples/react/app.js
 test-results/
 playwright-report/
+
+# Generated public React playground (build:site)
+dist/examples/react/app.js

@@ -1,6 +1,6 @@
 {
   "name": "@ersione/design-system",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": false,
   "description": "Shared Ersione tokens, CSS primitives and React components",
   "license": "UNLICENSED",
@@ -36,7 +36,8 @@
     "prepare": "npm run build",
     "test": "npm run build:react && node --test tests/*.test.mjs",
     "build:playground": "node scripts/build-playground.mjs",
-    "test:browser": "npm run build:playground && playwright test"
+    "test:browser": "npm run build:site && playwright test",
+    "build:site": "npm run build && npm run build:playground && node scripts/build-site-showcase.mjs"
   },
   "sideEffects": [
     "**/*.css"
