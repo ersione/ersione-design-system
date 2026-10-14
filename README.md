@@ -10,7 +10,7 @@
 - [컬러 팔레트·UI 역할·차트](https://ersione-design-system.ersione.chatgpt.site/docs/palette.html)
 - [사용 규칙](https://ersione-design-system.ersione.chatgpt.site/docs/usage.html)
 
-## v0.4에서 제공하는 것
+## 제공 기능
 
 - **Navigation / NavigationLink**: S/M/L, 선택적 아이콘, 현재 메뉴 표시, 키보드 포커스. Next 등 라우터는 `as={Link}`로 연결합니다.
 - **DataHighlight / HighlightPanel**: S/M/L 수치 강조, 단위·보조 변화율, 자료 없음 상태, 관련 지표를 묶는 표면.
@@ -29,6 +29,27 @@ Git 설치의 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 검�
 ```bash
 npm install github:ersione/ersione-design-system#v0.5.0
 ```
+
+### 소비 프로젝트 업데이트
+
+Company Lens는 검증한 커밋 SHA에 고정되어 있습니다. 인자 없이 `npm install`을 다시 실행하면 같은 버전을 설치하므로, 업데이트할 새 릴리스 태그나 SHA를 명시합니다.
+예를 들어 디자인 시스템의 `v0.5.1` 태그를 생성하고 push한 다음 Company Lens에서 실행합니다. 아래 버전은 다음 릴리스 예시입니다.
+
+```bash
+npm install github:ersione/ersione-design-system#v0.5.1
+npm run typecheck
+npm run build
+```
+
+관련 테스트와 화면을 확인하고 `package.json`, `package-lock.json`을 함께 커밋한 뒤 앱을 배포합니다. 패키지 설치만으로 운영 사이트가 바뀌지는 않습니다.
+기존 릴리스 태그를 다른 커밋으로 이동하지 않습니다.
+
+### 버전 운영 기준
+
+- 현재 디자인 시스템 버전은 `0.5.0`입니다. 기존 버전과 태그는 유지합니다.
+- 일반적인 스타일 조정, 버그 수정과 호환되는 소규모 개선은 마지막 자리만 올립니다: `0.5.0` → `0.5.1` → `0.5.2`.
+- 매 작업마다 가운데 자리를 올리지 않습니다. 큰 기능 묶음이나 호환성 변경이 필요할 때 별도로 결정하고 변경 기록에 설명합니다.
+- 문서·공개 예제만 수정하고 소비 패키지 동작이 바뀌지 않으면 패키지 버전을 올리지 않아도 됩니다.
 
 ```tsx
 import '@ersione/design-system/styles.css';
