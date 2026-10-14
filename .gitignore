@@ -7,3 +7,6 @@ node_modules/
 
 lib/
 examples/company-lens/qa/
+examples/react/app.js
+test-results/
+playwright-report/

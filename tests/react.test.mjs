@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup as render } from 'react-dom/server';
-import { Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer } from '../lib/react/index.js';
+import { Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer, Checkbox, Radio, Switch, Textarea, Alert, Card, Progress, Skeleton, Accordion, Pagination, Tabs, Toast } from '../lib/react/index.js';
 
 test('buttons avoid accidental form submission and block submissions while loading', () => {
   assert.match(render(h(Button, null, 'Save')), /type="button"/);
@@ -41,4 +41,33 @@ test('tables retain native captions and header scope; badges do not invent live 
   const badge = render(h(Badge, { tone: 'warning' }, 'Old data'));
   assert.match(badge, /eds-status--warning/);
   assert.doesNotMatch(badge, /role="(?:alert|status)"/);
+});
+
+
+test('additional primitives preserve native semantics, status roles and page boundaries', () => {
+  assert.match(render(h(Checkbox, { defaultChecked: true, name: 'notifications' })), /type="checkbox"/);
+  assert.match(render(h(Radio, { name: 'visibility', value: 'private' })), /type="radio"/);
+  assert.match(render(h(Switch, { defaultChecked: true, 'aria-label': 'Auto update' })), /role="switch"/);
+  assert.match(render(h(Textarea, { name: 'description', defaultValue: 'Details' })), />Details<\/textarea>/);
+  assert.match(render(h(Alert, { tone: 'error', role: 'alert', heading: 'Error' }, 'Try again')), /role="alert"/);
+  assert.match(render(h(Card, { padding: 'sm' }, 'Content')), /eds-card--sm/);
+  assert.doesNotMatch(render(h(Progress, { label: 'Loading' })), /value="/);
+  assert.match(render(h(Skeleton, { 'aria-hidden': false })), /aria-hidden="true"/);
+  assert.match(render(h(Accordion, { heading: 'More', open: true }, 'Details')), /<details[^>]*open=""/);
+  const first = render(h(Pagination, { page: 1, totalPages: 3, onPageChange: () => {} }));
+  assert.match(first, /disabled=""[^>]*>이전/);
+  const last = render(h(Pagination, { page: 3, totalPages: 3, onPageChange: () => {} }));
+  assert.match(last, /disabled=""[^>]*>다음/);
+});
+
+test('interactive entry server rendering exposes linked tabs and a persistent polite region', () => {
+  const tabs = render(h(Tabs, { label: 'Project', items: [{value:'one',label:'One',content:'Overview'},{value:'two',label:'Two',content:'Settings',disabled:true}] }));
+  assert.match(tabs, /role="tablist"/);
+  assert.match(tabs, /aria-controls="[^"]+"/);
+  assert.match(tabs, /role="tabpanel"/);
+  assert.match(tabs, /aria-selected="true"/);
+  const toast = render(h(Toast, { open: false }, 'Saved'));
+  assert.match(toast, /role="status"/);
+  assert.match(toast, /aria-live="polite"/);
+  assert.doesNotMatch(toast, /Saved/);
 });

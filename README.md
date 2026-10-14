@@ -7,7 +7,7 @@
 - `tokens/tokens.json`: 디자인 토큰 원본
 - `tokens/tokens.css`: JSON에서 생성한 CSS 변수
 - `styles.css`: 프레임워크에 독립적인 `eds-*` 공통 클래스
-- `src/react/index.tsx`: React 19용 기본 컴포넌트 (빌드 결과 `lib/react`)
+- `src/react/`: React 19용 공통 컴포넌트 (빌드 결과 `lib/react`)
 - `docs/COMPONENTS.md`: 컴포넌트 목록, 크기와 상태
 - `docs/USAGE.md`: 테마, 데이터 색상, 레이아웃, 접근성, 변경 규칙
 - `showcase/index.html`: 동작 검토용 HTML
@@ -19,7 +19,7 @@ Node.js 20 이상에서 `npm run build`, `npm run check`, `npm run preview`.
 토큰·쇼케이스 생성과 React JavaScript/타입 선언 빌드를 수행합니다. `npm test`는 서버 렌더링과 네이티브 폼 계약을 검사합니다.
 
 ## 설치 상태
-v0.2는 공통 CSS와 React 기본 컴포넌트를 제공합니다. Git 설치에는 비공개 저장소 접근 권한이 필요합니다.
+v0.2는 공통 CSS와 React 컴포넌트 20개 계열과 TableContainer를 제공합니다. Git 설치에는 비공개 저장소 접근 권한이 필요합니다.
 설치 시 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 서비스에서는 검증한 커밋 SHA 또는 릴리스 태그를 고정하세요.
 
 ```bash
@@ -42,6 +42,8 @@ React는 peer dependency이며 번들에 포함하지 않습니다. React 소비
 색상 테마는 `.eds-theme` 또는 기존 쇼케이스의 `.app`에 적용됩니다.
 전체 사용 예시와 상태 계약은 [패키지 사용법](docs/PACKAGE.md)을 참고하세요.
 
+React 검토 화면: `npm run build:playground` 후 저장소 루트를 정적 서버로 열고 `/examples/react/`를 확인합니다. `npm run test:browser`는 키보드·포커스·폼·페이지 경계와 320/390/1280px 네 테마를 검사합니다. 최초 실행은 `npx playwright install chromium`이 필요합니다.
+
 Noto Sans KR 파일은 쇼케이스에 로컬 제공하며 SIL OFL 1.1 라이선스를 함께 보관합니다.
 
 ## Figma
@@ -59,7 +61,7 @@ GitHub 저장소는 비공개이며 공개 Sites에는 디자인 검토용 파�
 - 비공개 GitHub: https://github.com/ersione/ersione-design-system
 
 Figma 초기 명세: 80개 테마별 컴포넌트 세트 / 284개 variant 컴포넌트와 8개 지표 패턴 원본.
-모든 family가 구현된 것은 아닙니다. React 제공 범위는 Button/Input/Select/Badge/Metric/MetricPanel/Table/TableContainer이며, Dialog/Tabs 등은 후속 구현 대상입니다.
+모든 family가 구현된 것은 아닙니다. React는 목록의 20개 컴포넌트 계열과 TableContainer를 제공합니다. 바닐라 JS 동작 API와 Vue 래퍼는 후속 범위입니다.
 Figma 생성 스크립트는 초기 생성용이며 반복 실행으로 기존 작업을 덮어쓰지 않습니다. 수정 시 state.json의 ID를 기준으로 대상만 업데이트합니다.
 
 ## Figma revision 2 (DRAFT)

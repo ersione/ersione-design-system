@@ -21,4 +21,4 @@
 - **Metric**: salary, people, flow highlights
 - **MetricPanel**: cards or unified; S/M/L is not required
 
-React v0.2 제공: Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer. 그 외 항목은 HTML/Figma 명세이며 React API는 후속 구현 대상입니다. API와 접근성 책임은 [PACKAGE.md](PACKAGE.md)를 참고하세요.
+React v0.2는 위 20개 계열과 TableContainer를 제공합니다. Input과 Select는 sm/md/lg 시각 크기를 지원하고, Textarea/Checkbox/Radio/Switch 등은 용도에 맞는 크기를 유지합니다. API와 접근성 책임은 [PACKAGE.md](PACKAGE.md)를 참고하세요.
