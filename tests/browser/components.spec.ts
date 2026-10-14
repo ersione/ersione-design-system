@@ -124,7 +124,8 @@ test('navigation and canvas theme adapter share all four themes', async ({page})
     await page.getByRole('combobox',{name:'브랜드 테마'}).selectOption(brand);
     await page.getByRole('switch',{name:'다크 모드',exact:true}).setChecked(dark);
     const expected=await page.locator('body').evaluate(node=>getComputedStyle(node).getPropertyValue('--palette-blue').trim());
-    await expect(page.locator('[data-chart-theme]')).toHaveText(expected);
+    await expect(page.locator('[data-chart-theme]')).toHaveAttribute('data-chart-theme',expected);
+    await expect(page.getByText(expected,{exact:true})).toHaveCount(0);
     const colors=await page.locator('[data-chart-series]').evaluateAll(nodes=>nodes.map(n=>getComputedStyle(n).color));
     expect(new Set(colors).size).toBe(5);
     const highlight=page.locator('.eds-highlight.eds-data--blue').first();
@@ -154,5 +155,5 @@ test('chart theme observer ignores layout-only style changes and cleans up', asy
   await example.evaluate(node => { node.style.width='100%'; node.style.height='auto'; });
   await page.getByRole('switch',{name:'다크 모드',exact:true}).check();
   await expect(example).toHaveAttribute('data-theme-updates','2');
-  await expect(page.locator('[data-chart-theme]')).toHaveText('#a4c9ff');
+  await expect(page.locator('[data-chart-theme]')).toHaveAttribute('data-chart-theme','#a4c9ff');
 });

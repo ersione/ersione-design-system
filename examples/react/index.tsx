@@ -11,7 +11,7 @@ function SharedDataExample() {
   const [theme, setTheme] = useState<ChartTheme | null>(null);
   const [updates, setUpdates] = useState(0);
   useEffect(() => ref.current ? observeChartTheme(ref.current, theme => { setTheme(theme); setUpdates(value => value + 1); }) : undefined, []);
-  return <div ref={ref} data-theme-observer data-theme-updates={updates}>
+  return <div ref={ref} data-theme-observer data-theme-updates={updates} data-chart-theme={theme?.palette.blue}>
     <Navigation aria-label="공통 메뉴 예시"><NavigationLink href="#overview" active={active === "overview"} onClick={event => { event.preventDefault(); setActive("overview"); }} icon={<svg viewBox="0 0 20 20"><path d="M3 15L8 8L12 11L17 4" fill="none" stroke="currentColor" strokeWidth="2"/></svg>}>개요</NavigationLink><NavigationLink href="#charts" active={active === "charts"} onClick={event => { event.preventDefault(); setActive("charts"); }}>월별 추이</NavigationLink></Navigation>
     <HighlightPanel style={{marginTop:16}}><h3>핵심 수치 · 가상 데이터</h3><div className="row"><DataHighlight tone="blue" size="lg" unit="명" secondary="+31.7%">+83</DataHighlight><DataHighlight tone="teal">-0.6%</DataHighlight><DataHighlight tone="teal" unit="명">156</DataHighlight><DataHighlight tone="orange" unit="명">72</DataHighlight><DataHighlight muted>비교 자료 없음</DataHighlight></div></HighlightPanel>
     <svg role="img" aria-label="공통 차트 색상 예시" viewBox="0 0 600 150" style={{width:'100%',marginTop:20}}>
@@ -20,7 +20,6 @@ function SharedDataExample() {
       <path d="M20 130L130 100L240 120L350 85L460 100L580 70" stroke="var(--palette-teal)" strokeWidth="2" strokeDasharray="6 4" fill="none"/>
     </svg>
     <div className="row">{theme?.series.map((color,index)=><span key={index} data-chart-series={index} style={{color}}>● 시리즈 {index+1}</span>)}</div>
-    <span data-chart-theme>{theme?.palette.blue}</span>
   </div>;
 }
 
