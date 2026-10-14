@@ -20,3 +20,6 @@ const text=fs.readFileSync(path.join(root,'docs/USAGE.md'),'utf8');
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 fs.writeFileSync(path.join(root,'dist/docs/usage.html'),`<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ersione v0.1 사용 규칙</title><style>body{font-family:system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;line-height:1.9;color:#182235}pre{white-space:pre-wrap;font:inherit}a{color:#2563eb}</style><a href="../index.html">← 쇼케이스</a><pre>${escape(text)}</pre></html>`);
 console.log('Built four token themes and static showcase.');
+
+fs.copyFileSync(path.join(root,'styles.css'),path.join(root,'dist/styles.css'));
+fs.copyFileSync(path.join(root,'docs/palette.html'),path.join(root,'dist/docs/palette.html'));

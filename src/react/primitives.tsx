@@ -1,8 +1,8 @@
-import type { ComponentProps, ReactNode } from "react";
+import type { ComponentProps, ElementType, ReactNode } from "react";
 
 const cx = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(" ");
 export type ControlSize = "sm" | "md" | "lg";
-export type DataTone = "neutral" | "salary" | "people" | "flow";
+export type DataTone = "neutral" | "primary" | "salary" | "people" | "flow" | "joiners" | "departures";
 export type StatusTone = "neutral" | "success" | "warning" | "error";
 
 export type ButtonProps = ComponentProps<"button"> & {
@@ -131,3 +131,28 @@ export function Pagination({ page, totalPages, previous, next, onPageChange, cla
   </nav>;
 }
 
+
+
+export type NavigationProps = ComponentProps<"nav"> & { size?: ControlSize };
+/** Ordinary page links, not ARIA tabs. The host owns routing and active matching. */
+export function Navigation({ size = "md", className, ...props }: NavigationProps) {
+  return <nav aria-label="주 메뉴" {...props} className={cx("eds-navigation", `eds-navigation--${size}`, className)} />;
+}
+export type NavigationLinkProps = ComponentProps<"a"> & { active?: boolean; icon?: ReactNode; as?: ElementType };
+/** `as={Link}` supports a router without introducing a framework dependency. */
+export function NavigationLink({ active = false, icon, as: Link = "a", className, children, ...props }: NavigationLinkProps) {
+  return <Link {...props} aria-current={active ? "page" : props["aria-current"]} className={cx("eds-navigation__link", className)}>
+    {icon != null && <span className="eds-navigation__icon" aria-hidden="true">{icon}</span>}<span>{children}</span>
+  </Link>;
+}
+export type DataHighlightProps = ComponentProps<"strong"> & { tone?: DataTone; size?: ControlSize; unit?: ReactNode; secondary?: ReactNode; muted?: boolean };
+export function DataHighlight({ tone = "primary", size = "md", unit, secondary, muted = false, className, children, ...props }: DataHighlightProps) {
+  return <strong {...props} className={cx("eds-highlight", `eds-data--${tone}`, `eds-highlight--${size}`, muted && "eds-highlight--muted", className)}>
+    <span>{children}{unit != null && <small className="eds-highlight__unit">{unit}</small>}</span>
+    {secondary != null && <small className="eds-highlight__secondary">{secondary}</small>}
+  </strong>;
+}
+export type HighlightPanelProps = ComponentProps<"section"> & { tone?: DataTone };
+export function HighlightPanel({ tone = "primary", className, ...props }: HighlightPanelProps) {
+  return <section {...props} className={cx("eds-highlight-panel", `eds-data--${tone}`, className)} />;
+}

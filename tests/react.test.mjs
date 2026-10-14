@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup as render } from 'react-dom/server';
-import { Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer, Checkbox, Radio, Switch, Textarea, Alert, Card, Progress, Skeleton, Accordion, Pagination, Tabs, Toast } from '../lib/react/index.js';
+import { Navigation, NavigationLink, DataHighlight, HighlightPanel, Button, Input, Select, Badge, Metric, MetricPanel, Table, TableContainer, Checkbox, Radio, Switch, Textarea, Alert, Card, Progress, Skeleton, Accordion, Pagination, Tabs, Toast } from '../lib/react/index.js';
 
 test('buttons avoid accidental form submission and block submissions while loading', () => {
   assert.match(render(h(Button, null, 'Save')), /type="button"/);
@@ -70,4 +70,21 @@ test('interactive entry server rendering exposes linked tabs and a persistent po
   assert.match(toast, /role="status"/);
   assert.match(toast, /aria-live="polite"/);
   assert.doesNotMatch(toast, /Saved/);
+});
+
+
+test('shared navigation preserves router adapters, active state and ordinary anchor semantics', () => {
+  const Adapter = props => h('a', {...props, 'data-router': 'host'});
+  const html = render(h(Navigation, {size:'sm'}, h(NavigationLink, {as:Adapter, href:'/overview',active:true,icon:h('svg')}, 'Overview'), h(NavigationLink,{href:'/history'},'History')));
+  assert.match(html, /eds-navigation--sm/);
+  assert.match(html, /aria-current="page"/);
+  assert.match(html, /data-router="host"/);
+  assert.match(html, /aria-hidden="true"/);
+  assert.equal((html.match(/aria-current=/g)||[]).length,1);
+  assert.doesNotMatch(html,/role="tab/);
+});
+test('highlights preserve signed/zero/missing values without assigning success or error status', () => {
+  const html=render(h(HighlightPanel,null,h(DataHighlight,{tone:'people',size:'lg',unit:'명',secondary:'+31.7%'},0),h(DataHighlight,{tone:'salary'},'-0.6%'),h(DataHighlight,{muted:true},'비교 자료 없음')));
+  assert.match(html,/0<small/); assert.match(html,/-0.6%/); assert.match(html,/eds-highlight__secondary/); assert.match(html,/eds-highlight--muted/);
+  assert.doesNotMatch(html,/role="alert"|eds-status--error/);
 });

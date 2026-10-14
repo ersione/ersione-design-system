@@ -95,3 +95,11 @@ function Settings() {
 자동 브라우저 검사는 Chromium 대상입니다. Firefox/Safari 및 전체 스크린리더 인증을 완료했다고 주장하지 않습니다.
 
 Select v0.2.1: `appearance: base-select` 지원 환경에서는 펼친 목록에도 공통 테마·선택·포커스·disabled 스타일을 적용합니다. 비지원 환경과 multiple/size 목록은 네이티브 picker로 유지합니다. 폼 name/value, required, 키보드와 change 이벤트 계약은 바뀌지 않습니다.
+
+## v0.3 공통 메뉴·수치·차트
+
+Navigation / NavigationLink: sm/md/lg, 선택적 아이콘, active → aria-current=page. Next 등의 라우터는 as={Link}로 연결하고 경로 매칭은 호스트에서 처리합니다. 일반 페이지 링크이므로 탭 키로 이동하며 ARIA tablist를 사용하지 않습니다. 모바일은 가로 스크롤합니다.
+DataHighlight: sm/md/lg, 단위·보조 변화율, 자료 없음 muted 상태. HighlightPanel은 흰색/다크 표면과 상단 강조선을 제공합니다.
+색상 역할: primary=주요 강조, people=인원·규모(블루), salary=금액(틸), joiners=취득(틸), departures=상실(앰버), flow=변동. 증가·감소는 부호/문구로 표시하며 오류·성공 색상과 구별합니다.
+`@ersione/design-system/charts`의 readChartTheme(element)는 현재 테마의 색상·5개 범주 팔레트·폰트·선·범례 설정을 반환합니다. observeChartTheme(element, callback)는 상위 data-brand/data-dark/class/style 변경을 반영하며 반환한 정리 함수를 언마운트 시 호출해야 합니다. Chart.js 등은 호스트 의존성입니다. 축 단위·툴팁 숫자 포맷·누락 데이터 처리는 호스트가 책임집니다.
+CSS 클래스와 tokens.css는 바닐라/Vue에서도 동일하게 사용 가능합니다.

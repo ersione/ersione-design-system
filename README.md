@@ -66,3 +66,5 @@ Figma 생성 스크립트는 초기 생성용이며 반복 실행으로 기존 �
 
 ## Figma revision 2 (DRAFT)
 Foundations / Components / Patterns & Applications were expanded in the existing file. Twenty Company Lens desktop frames cover search, results and details across four themes. Final typography clipping/overlap repair remains blocked by the Starter MCP call limit. See [revision notes](docs/FIGMA-REVISION-2.md). This is not a new package release or Sites publication.
+
+- [컬러 팔레트와 사용 기준](docs/COLORS.md) · [시각 팔레트](docs/palette.html)

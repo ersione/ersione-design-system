@@ -113,3 +113,36 @@ test('select picker shares all four themes and keeps native pointer/keyboard sel
     await expect(select).toBeFocused();
   }
 });
+
+
+test('navigation and canvas theme adapter share all four themes', async ({page}) => {
+  const nav=page.getByRole('navigation',{name:'공통 메뉴 예시'});
+  await expect(nav.locator('[aria-current="page"]')).toHaveText('개요');
+  await nav.getByRole('link',{name:'월별 추이'}).focus();
+  await expect(nav.getByRole('link',{name:'월별 추이'})).toBeFocused();
+  for(const brand of ['blue','orange']) for(const dark of [false,true]) {
+    await page.getByRole('combobox',{name:'브랜드 테마'}).selectOption(brand);
+    await page.getByRole('switch',{name:'다크 모드',exact:true}).setChecked(dark);
+    const expected=await page.locator('body').evaluate(node=>getComputedStyle(node).getPropertyValue('--data-people').trim());
+    await expect(page.locator('[data-chart-theme]')).toHaveText(expected);
+    const colors=await page.locator('[data-chart-series]').evaluateAll(nodes=>nodes.map(n=>getComputedStyle(n).color));
+    expect(new Set(colors).size).toBe(5);
+    const highlight=page.locator('.eds-highlight.eds-data--people').first();
+    const valueColor=await highlight.evaluate(node=>getComputedStyle(node).color);
+    expect(valueColor).toBe(colors[0]);
+  }
+});
+
+
+test('visual palette documents live tokens and adapts to small screens', async ({page}) => {
+  await page.goto('/docs/palette.html');
+  for(const width of [1280,390,320]) {
+    await page.setViewportSize({width,height:900});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }
+  await page.getByRole('switch').check();
+  await expect(page.locator('body')).toHaveAttribute('data-dark','true');
+  await expect(page.locator('[data-token="chart-series-1"]')).toHaveText('#a4c9ff');
+  await page.getByRole('combobox',{name:'브랜드'}).selectOption('orange');
+  await expect(page.locator('body')).toHaveAttribute('data-brand','orange');
+});
