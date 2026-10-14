@@ -15,7 +15,15 @@ export function readChartTheme(element: Element) {
 export type ChartTheme = ReturnType<typeof readChartTheme>;
 /** Re-read inherited tokens when an ancestor's theme changes. Returns cleanup. */
 export function observeChartTheme(element: Element, callback: (theme: ChartTheme) => void) {
-  const update = () => callback(readChartTheme(element));
+  let previous = "";
+  const update = () => {
+    const theme = readChartTheme(element);
+    const signature = JSON.stringify(theme);
+    if (signature !== previous) {
+      previous = signature;
+      callback(theme);
+    }
+  };
   const observer = new MutationObserver(update);
   for (let node: Element | null = element; node; node = node.parentElement) {
     observer.observe(node, { attributes: true, attributeFilter: ["class", "style", "data-brand", "data-dark"] });

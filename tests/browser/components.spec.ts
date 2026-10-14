@@ -146,3 +146,13 @@ test('visual palette documents live tokens and adapts to small screens', async (
   await page.getByRole('combobox',{name:'브랜드'}).selectOption('orange');
   await expect(page.locator('body')).toHaveAttribute('data-brand','orange');
 });
+
+
+test('chart theme observer ignores layout-only style changes and cleans up', async ({page}) => {
+  const example=page.locator('[data-theme-observer]');
+  await expect(example).toHaveAttribute('data-theme-updates','1');
+  await example.evaluate(node => { node.style.width='100%'; node.style.height='auto'; });
+  await page.getByRole('switch',{name:'다크 모드',exact:true}).check();
+  await expect(example).toHaveAttribute('data-theme-updates','2');
+  await expect(page.locator('[data-chart-theme]')).toHaveText('#a4c9ff');
+});
