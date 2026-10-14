@@ -68,6 +68,7 @@ import { Navigation, NavigationLink, DataHighlight, HighlightPanel, Button } fro
 </div>
 ```
 
+- 색상 조합: `palette-{color}`는 기본색, `-tint`는 연한색, `-subtle`은 더 옅은색입니다. DataPanel에는 subtle, DataBadge에는 tint를 사용하며 의미는 프로젝트가 정합니다.
 - 차트: `@ersione/design-system/charts`의 `readChartTheme(element)`, `observeChartTheme(element, callback)`.
 - 토큰: `@ersione/design-system/tokens.css`, `@ersione/design-system/tokens.json`.
 - 심볼: `@ersione/design-system/symbol.svg`.
@@ -106,7 +107,7 @@ npm run preview        # http://127.0.0.1:8766
 ## Figma와 변경 기록
 
 [Figma 디자인 파일](https://www.figma.com/design/TfjaDsg9mQb5CF5SB6hcFL)은 초기 디자인과 응용 프레임을 보관합니다.
-코드와 자동으로 양방향 동기화되지 않으며, 이번 v0.4의 메뉴·하이라이트·팔레트 구현이 Figma 전체에 반영됐다는 뜻은 아닙니다.
+코드와 자동으로 양방향 동기화되지 않으며, 현재 코드의 메뉴·하이라이트·팔레트 구현이 Figma 전체에 반영됐다는 뜻은 아닙니다.
 기존 ID는 `figma/state.json`에 보관하고, 과거 revision 2 상태는 [해당 기록](docs/FIGMA-REVISION-2.md)을 참고하세요.
 
 [변경 기록](docs/CHANGELOG.md) · [검증 기록](docs/VALIDATION.md) · [비공개 GitHub 저장소](https://github.com/ersione/ersione-design-system)

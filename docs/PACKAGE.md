@@ -1,4 +1,4 @@
-# 패키지 사용법 (v0.5.0)
+# 패키지 사용법 (v0.5.1)
 
 ## 공통 원칙
 
@@ -132,3 +132,26 @@ const stop = observeChartTheme(canvas, (theme) => {
 });
 // cleanup: stop();
 ```
+
+## 현재 배경 농도와 수치 조합 (v0.5.1)
+
+```tsx
+import { DataPanel, DataBadge, DataHighlight } from '@ersione/design-system/react';
+
+<DataPanel tone="rose" padding="md">
+  <p>영역 설명은 중립색</p>
+  <DataBadge tone="rose" size="md" label="순위">
+    <DataHighlight tone="rose" unit="위">8</DataHighlight>
+  </DataBadge>
+  <DataBadge tone="gray" label="일반">
+    <DataHighlight tone="gray" unit="위">85</DataHighlight>
+  </DataBadge>
+</DataPanel>
+```
+
+- 색 이름: blue / teal / orange / purple / rose / gray. 기존 다섯 기본색은 유지합니다.
+- 각 색은 기본색, tint, subtle을 제공합니다. 넓은 영역과 작은 배지를 서로 다른 농도로 조합합니다.
+- DataPanel은 div이며 padding=sm/md/lg, DataBadge는 span이며 size=sm/md/lg와 선택적 label을 지원합니다. children은 호스트가 조합합니다.
+- ChartTheme.palette / tints / subtles에 같은 여섯 색을 제공합니다. 기본 series는 여전히 다섯 색이며 회색을 자동 시리즈로 추가하지 않습니다.
+- 실제 적용 프로젝트는 Company Lens(Next/React)와 PogoAtlas Web(React)입니다. 메뉴 경로와 데이터 의미는 각 호스트가 관리합니다.
+- 작은 수정은 patch 버전으로 올립니다. 기존 태그는 이동하지 않으며 소비 프로젝트가 새 태그를 지정해 설치·검증·빌드·배포합니다.

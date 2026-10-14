@@ -34,3 +34,11 @@
 - 네 테마 및 320/390/1280px 브라우저 시나리오 13개 통과(공개 산출물 검사 2개 포함). SSR 검사 8개와 색상 대비/정적 파일 검사를 수행.
 - 기존 갈색 골드를 오렌지로 조정하고 amber 토큰·CSS·타입·차트 API를 제거.
 - Company Lens의 중복 통계 메뉴 제거 및 고용 변화 강조색을 퍼플로 매핑. 서비스 배포 검증은 해당 저장소 docs/design-system.md에서 관리.
+
+## v0.5.1 배경 농도·수치 배지
+
+- 기존 다섯 기본색 유지, gray 및 여섯 색의 subtle 단계 추가.
+- DataPanel / DataBadge 조합, 모든 테마의 foreground/tint/subtle 및 중립 설명 텍스트 대비 검사 통과.
+- SSR 9개, Chromium 시나리오 14개 통과. 320/390/1280px, 네 테마, 서로 다른 영역/배지 농도와 실제 생성 자산을 확인.
+- 공개 쇼케이스·React 예제·팔레트에 반영했고 Git 태그 v0.5.1과 GitHub CI를 확인.
+- Company Lens 운영 적용은 해당 저장소 docs/design-system.md, PogoAtlas 적용 및 React 전환 검증은 pogo-atlas-web의 README와 docs/react-migration.md에서 관리합니다.

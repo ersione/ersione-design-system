@@ -1,4 +1,4 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ersione v0.5.1 사용 규칙</title><style>body{font-family:system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;line-height:1.9;color:#182235}pre{white-space:pre-wrap;font:inherit}a{color:#2563eb}</style><a href="../index.html">← 쇼케이스</a><pre># v0.5 사용 규칙
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ersione v0.5.1 사용 규칙</title><style>body{font-family:system-ui,sans-serif;max-width:900px;margin:40px auto;padding:0 24px;line-height:1.9;color:#182235}pre{white-space:pre-wrap;font:inherit}a{color:#2563eb}</style><a href="../index.html">← 쇼케이스</a><pre># v0.5.1 사용 규칙
 
 ## 브랜드와 테마
 심볼 SVG의 형태·붙어 있는 획·블루·오렌지 점을 보존합니다. 비율을 변형하지 않습니다.
@@ -47,4 +47,17 @@ React 기본 컴포넌트는 v0.2부터 제공합니다. 바닐라 JS 동작 API
 ## 공개 미리보기
 실제 서비스 데이터·백엔드 연결 없음. 예시 데이터는 가상 데이터입니다.
 개인별 선택은 브라우저에서만 동작하며 의견을 서버로 전송하지 않습니다.
+
+## 배경 농도와 수치 강조
+
+색은 blue/teal/orange/purple/rose/gray로 제공합니다. 각 색의 기본색은 글자·숫자,
+tint는 연한색, subtle은 더 옅은색입니다. 의미를 전역으로 강제하지 않습니다.
+DataPanel은 subtle 배경과 중립 본문, DataBadge는 tint 배경과 기본색 글자를 사용합니다.
+DataBadge 안에 DataHighlight를 조합해 핵심 숫자를 강조합니다. 넓은 영역 안에서
+작은 배지가 구분되도록 두 농도를 분리하며 라이트·다크에서 같은 API를 사용합니다.
+기본 차트 series는 다섯 색을 유지하고 회색은 필요할 때 선택합니다.
+
+작은 변경은 patch 버전으로 올립니다. 기존 태그를 이동하지 않으며 소비 앱은
+새 태그를 지정해 설치한 뒤 자체 테스트·빌드·배포합니다. Git push나 패키지 설치만으로
+소비 앱의 운영 화면이 갱신되지는 않습니다.
 </pre></html>

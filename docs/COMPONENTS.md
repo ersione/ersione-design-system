@@ -24,7 +24,7 @@
 - **HighlightPanel**: surface with an accent border
 - **MetricPanel**: cards or unified; S/M/L is not required
 
-현재 v0.5는 위 기본 컴포넌트에 Navigation / NavigationLink, DataHighlight, HighlightPanel 및 Canvas 차트 테마 어댑터를 제공합니다. Input과 Select는 sm/md/lg 시각 크기를 지원하고, Textarea/Checkbox/Radio/Switch 등은 용도에 맞는 크기를 유지합니다. API와 접근성 책임은 [PACKAGE.md](PACKAGE.md)를 참고하세요.
+현재 v0.5.1은 위 기본 컴포넌트에 Navigation / NavigationLink, DataHighlight / HighlightPanel, DataPanel / DataBadge 및 Canvas 차트 테마 어댑터를 제공합니다. Input과 Select는 sm/md/lg 시각 크기를 지원하고, Textarea/Checkbox/Radio/Switch 등은 용도에 맞는 크기를 유지합니다. API와 접근성 책임은 [PACKAGE.md](PACKAGE.md)를 참고하세요.
 
 ## v0.3 공통 메뉴·수치·차트
 
