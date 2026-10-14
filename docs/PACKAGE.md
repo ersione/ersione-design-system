@@ -1,4 +1,4 @@
-# 패키지 사용법 (v0.2)
+# 패키지 사용법 (v0.2.1)
 
 ## 공통 원칙
 
@@ -93,3 +93,5 @@ function Settings() {
 
 검토 화면은 `examples/react/`이며 네 가지 테마와 크기·상태를 실제 React 소스로 렌더링합니다.
 자동 브라우저 검사는 Chromium 대상입니다. Firefox/Safari 및 전체 스크린리더 인증을 완료했다고 주장하지 않습니다.
+
+Select v0.2.1: `appearance: base-select` 지원 환경에서는 펼친 목록에도 공통 테마·선택·포커스·disabled 스타일을 적용합니다. 비지원 환경과 multiple/size 목록은 네이티브 picker로 유지합니다. 폼 name/value, required, 키보드와 change 이벤트 계약은 바뀌지 않습니다.

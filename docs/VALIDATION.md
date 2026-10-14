@@ -18,3 +18,9 @@
 - React 검토 화면 `examples/react/`. 생성된 번들과 브라우저 스크린샷은 Git에 포함하지 않음.
 - npm 패키지에는 런타임 JavaScript/타입/CSS/토큰/심볼/문서만 포함. 쇼케이스의 대용량 글꼴과 가상 서비스 예시는 제외.
 - Firefox/Safari 및 전체 스크린리더 인증, Vue 래퍼와 바닐라 JS API는 완료 범위가 아님.
+
+## v0.2.1 — 2026-10-14
+
+- 셀렉트의 펼친 목록 공통 테마·선택·disabled 스타일 추가.
+- Chromium 브라우저 검사 8개 통과. 네 가지 popup 테마, pointer 선택, Home/End/Enter/Escape 및 포커스 복귀 포함.
+- 비지원 브라우저와 multiple/size 목록은 기본 picker로 유지. 브라우저 전용 JavaScript를 추가하지 않음.

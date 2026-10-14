@@ -85,3 +85,31 @@ for(const width of [1280,390,320]) {
     expect(errors).toEqual([]);
   });
 }
+
+test('select picker shares all four themes and keeps native pointer/keyboard selection', async ({ page }) => {
+  const select=page.getByRole('combobox',{name:'지역',exact:true});
+  await expect(select).toHaveCSS('appearance','base-select');
+  await select.click();
+  await page.getByRole('option',{name:'부산',exact:true}).click();
+  await expect(select).toHaveValue('busan');
+  await select.press('Space');
+  await page.keyboard.press('Home');
+  await page.keyboard.press('Enter');
+  await expect(select).toHaveValue('');
+  await select.press('Space');
+  await page.keyboard.press('End');
+  await page.keyboard.press('Enter');
+  await expect(select).toHaveValue('busan');
+  for(const brand of ['blue','orange']) for(const dark of [false,true]) {
+    await page.getByRole('combobox',{name:'브랜드 테마'}).selectOption(brand);
+    await page.getByRole('switch',{name:'다크 모드',exact:true}).setChecked(dark);
+    await select.click();
+    await expect(page.getByRole('option',{name:'서울',exact:true})).toBeVisible();
+    const colors=await select.evaluate(node=>({picker:getComputedStyle(node,'::picker(select)').backgroundColor,control:getComputedStyle(node).backgroundColor}));
+    expect(colors.picker).toBe(colors.control);
+    await page.screenshot({path:`test-results/select-${brand}-${dark?'dark':'light'}.png`});
+    await page.keyboard.press('Escape');
+    expect(await select.evaluate(node=>node.matches(':open'))).toBe(false);
+    await expect(select).toBeFocused();
+  }
+});

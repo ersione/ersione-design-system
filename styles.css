@@ -100,3 +100,31 @@
   .eds-switch::before { display: none; }
   .eds-skeleton { border: 1px solid CanvasText; }
 }
+
+/* Native customizable picker: shared tokens without replacing form semantics.
+   Unsupported browsers retain their platform picker; multiple/listboxes stay native. */
+@supports (appearance: base-select) {
+  .eds-select:not([multiple]):not([size]),
+  .eds-select:not([multiple]):not([size])::picker(select) { appearance: base-select; }
+  .eds-select:not([multiple]):not([size]) { align-items: center; gap: 12px; padding-right: 16px; cursor: pointer; }
+  .eds-select:not([multiple]):not([size]):disabled { cursor: not-allowed; }
+  .eds-select::picker-icon { color: var(--muted); }
+  .eds-select:open { border-color: var(--accent); }
+  .eds-select:open::picker-icon { rotate: 180deg; color: var(--accent); }
+  .eds-select::picker(select) {
+    box-sizing: border-box; margin-block: 6px; padding: 6px;
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--surface); color: var(--text); font: inherit;
+    box-shadow: 0 8px 28px #10162020; max-height: min(320px, 60dvh);
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  .eds-select:not([multiple]):not([size]) option {
+    display: flex; align-items: center; gap: 12px;
+    min-height: 36px; padding: 8px 12px; border-radius: var(--radius-sm);
+    background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
+  }
+  .eds-select:not([multiple]):not([size]) option:checked { background: var(--tint); color: var(--accent); font-weight: 600; }
+  .eds-select:not([multiple]):not([size]) option:hover:not(:disabled), .eds-select:not([multiple]):not([size]) option:focus-visible { background: var(--tint); color: var(--accent); outline: none; }
+  .eds-select:not([multiple]):not([size]) option:disabled { color: var(--disabled-fg); background: var(--surface); cursor: not-allowed; }
+  .eds-select:not([multiple]):not([size]) option::checkmark { order: 1; margin-left: auto; color: var(--accent); }
+}
