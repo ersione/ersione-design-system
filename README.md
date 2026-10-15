@@ -1,7 +1,10 @@
 # Ersione Design System v0.5.1
 
-여러 프로젝트가 공유하는 디자인 토큰, 공통 CSS, React 컴포넌트와 시각 쇼케이스입니다.
-기존 Ersione 심볼과 Noto Sans KR, 블루/오렌지 브랜드, 라이트/다크 테마를 지원합니다.
+개인 프로젝트에서 함께 사용하는 디자인 토큰, 공통 CSS, React 컴포넌트와 시각 쇼케이스입니다.
+Ersione 심볼과 Noto Sans KR, 블루/오렌지 브랜드, 라이트/다크 테마를 지원합니다.
+
+Company Lens와 PogoAtlas의 공통 UI를 관리하며, 실제 서비스에서 필요한 기능을 중심으로 다듬고 있습니다.
+현재 0.x 버전으로 API와 스타일이 변경될 수 있으므로 소비 프로젝트에서는 검증한 릴리스 태그를 고정합니다.
 
 ## 미리보기
 
@@ -24,7 +27,7 @@
 
 ## 설치와 사용
 
-Node.js 20.11 이상. 비공개 Git 저장소 접근 권한이 필요하며 React 소비자는 React 19를 설치해야 합니다.
+Node.js 20.11 이상. 공개 GitHub 저장소에서 설치하며 React 소비자는 React 19를 설치해야 합니다.
 Git 설치의 `prepare`가 JavaScript와 타입 선언을 빌드합니다. 검증한 SHA 또는 릴리스 태그를 고정하세요.
 
 ```bash
@@ -114,4 +117,11 @@ npm run preview        # http://127.0.0.1:8766
 코드와 자동으로 양방향 동기화되지 않으며, 현재 코드의 메뉴·하이라이트·팔레트 구현이 Figma 전체에 반영됐다는 뜻은 아닙니다.
 기존 ID는 `figma/state.json`에 보관하고, 과거 revision 2 상태는 [해당 기록](docs/FIGMA-REVISION-2.md)을 참고하세요.
 
-[변경 기록](docs/CHANGELOG.md) · [검증 기록](docs/VALIDATION.md) · [비공개 GitHub 저장소](https://github.com/ersione/ersione-design-system)
+[변경 기록](docs/CHANGELOG.md) · [검증 기록](docs/VALIDATION.md) · [GitHub 저장소](https://github.com/ersione/ersione-design-system)
+
+## 라이선스와 지원 범위
+
+패키지의 라이선스 표기는 기존과 동일하게 `UNLICENSED`입니다. 소스 공개는 자유로운 재사용 라이선스를 부여한다는 뜻이 아닙니다.
+포함된 Noto Sans KR 폰트에는 별도의 [SIL Open Font License 1.1](assets/OFL-Noto-Sans-KR.txt)이 적용됩니다.
+
+개인 프로젝트의 공통 UI를 위한 저장소이며, 외부 프로젝트의 요구사항 대응이나 장기 호환성 지원을 보장하지 않습니다.
